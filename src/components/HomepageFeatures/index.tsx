@@ -1,58 +1,63 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: ReactNode;
+  link: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Introduction',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        An overview of terrorism in Pakistan, its historical context,
+        and the scope of this academic study on causes, prevention, and solutions.
       </>
     ),
+    link: '/docs/intro',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Causes of Terrorism',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Chapter 1 examines the socioeconomic, political, and ideological
+        factors contributing to terrorism in Pakistan.
       </>
     ),
+    link: '/docs/chapter-1-causes',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Prevention & Solutions',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Chapter 2 explores evidence-based prevention strategies, policy
+        recommendations, and paths toward lasting peace.
       </>
     ),
+    link: '/docs/chapter-2-solutions',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, description, link}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-      </div>
-    </div>
+    <Link to={link} className={styles.featureCard}>
+      <article>
+        <div className="text--center">
+          <Heading as="h3" className={styles.featureTitle}>
+            {title}
+          </Heading>
+          <p className={styles.featureDescription}>{description}</p>
+        </div>
+        <div className={styles.readMore}>
+          Read Chapter →
+        </div>
+      </article>
+    </Link>
   );
 }
 
@@ -60,7 +65,16 @@ export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
+        <div className={styles.sectionHeader}>
+          <Heading as="h2" className={styles.sectionTitle}>
+            Explore the Book
+          </Heading>
+          <p className={styles.sectionSubtitle}>
+            A comprehensive academic study examining the complex factors behind terrorism
+            in Pakistan and evidence-based approaches to prevention.
+          </p>
+        </div>
+        <div className={styles.featureRow}>
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

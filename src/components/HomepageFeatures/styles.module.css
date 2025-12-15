@@ -1,11 +1,219 @@
+/**
+ * Homepage Features - Modern card design with hover effects
+ */
+
 .features {
   display: flex;
-  align-items: center;
-  padding: 2rem 0;
+  align-items: stretch;
+  padding: 5rem 0;
   width: 100%;
+  background: var(--ifm-background-color);
+}
+
+.featureRow {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.featureCard {
+  flex: 1;
+  min-width: 280px;
+  max-width: 380px;
+  background: var(--gradient-card);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 2.5rem 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--ifm-color-primary-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--ifm-color-primary-lighter);
+}
+
+.featureCard:hover::before {
+  transform: scaleX(1);
+}
+
+/* Icon wrapper (optional - not used for text-only cards) */
+.featureIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--ifm-color-primary-lightest), transparent);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover .featureIconWrapper {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, var(--ifm-color-primary-lighter), var(--ifm-color-primary-lightest));
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 48px;
+  width: 48px;
+  color: var(--ifm-color-primary);
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover .featureSvg {
+  transform: scale(1.1);
+}
+
+.featureTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-heading-color);
+  letter-spacing: -0.02em;
+}
+
+.featureDescription {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.readMore {
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: var(--color-accent, var(--ifm-color-primary));
+  font-size: 0.95rem;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.featureCard:hover .readMore {
+  color: var(--color-accent-hover, var(--ifm-color-primary-dark));
+}
+
+/* Focus styles for accessibility */
+.featureCard:focus-visible {
+  outline: 2px solid var(--color-accent, var(--ifm-color-primary));
+  outline-offset: 2px;
+}
+
+/* Section header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Staggered animation on load */
+.featureCard:nth-child(1) {
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+.featureCard:nth-child(2) {
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.featureCard:nth-child(3) {
+  animation: fadeInUp 0.5s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .featureCard {
+  background: var(--color-surface);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] .featureCard:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .featureIconWrapper {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), transparent);
+}
+
+[data-theme='dark'] .featureCard:hover .featureIconWrapper {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(96, 165, 250, 0.1));
+}
+
+/* Responsive */
+@media screen and (max-width: 996px) {
+  .features {
+    padding: 3rem 1rem;
+  }
+
+  .featureRow {
+    gap: 1.5rem;
+  }
+
+  .featureCard {
+    min-width: 100%;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .featureCard {
+    animation: none;
+    transition: none;
+  }
+
+  .featureCard::before,
+  .featureIconWrapper,
+  .featureSvg {
+    transition: none;
+  }
+
+  .featureCard:hover {
+    transform: none;
+  }
 }

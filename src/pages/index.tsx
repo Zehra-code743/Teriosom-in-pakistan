@@ -12,16 +12,25 @@ function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
+      {/* Animated background shapes */}
+      <div className={styles.backgroundShapes}>
+        <div className={clsx(styles.shape, styles.shape1)} />
+        <div className={clsx(styles.shape, styles.shape2)} />
+        <div className={clsx(styles.shape, styles.shape3)} />
+      </div>
+
+      <div className={clsx('container', styles.heroContent)}>
+        <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className={clsx('hero__subtitle', styles.heroSubtitle)}>
+          {siteConfig.tagline}
+        </p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className={clsx(styles.heroButton, styles.heroButtonPrimary)}
             to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            Start Reading
           </Link>
         </div>
       </div>
@@ -33,8 +42,8 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description={siteConfig.tagline}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
