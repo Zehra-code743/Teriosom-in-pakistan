@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /**
  * Custom CSS for enhanced Docusaurus UI
  * Modern, clean design with improved typography and visual hierarchy
@@ -594,4 +598,26 @@ tr:hover td {
   .markdown {
     max-width: 100%;
   }
+}
+
+/* ===== SIGN IN BUTTON ===== */
+.navbar-signin-button {
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%) !important;
+  color: white !important;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: var(--ifm-button-border-radius) !important;
+  font-weight: 600 !important;
+  transition: all var(--transition-fast) !important;
+  box-shadow: var(--ifm-global-shadow-lw) !important;
+  border: none !important;
+}
+
+.navbar-signin-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: var(--ifm-global-shadow-md) !important;
+  color: white !important;
+}
+
+[data-theme='dark'] .navbar-signin-button {
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%) !important;
 }

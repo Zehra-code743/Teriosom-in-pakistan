@@ -1,0 +1,3 @@
+The project has been successfully redeployed to Vercel with the fix for the CSS and Tailwind issues.
+
+You can access it at: https://y-hcfgon6zy-shan-e-zehras-projects.vercel.app

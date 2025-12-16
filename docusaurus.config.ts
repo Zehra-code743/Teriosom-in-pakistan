@@ -35,6 +35,20 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    async function myPlugin(context, options) {
+      return {
+        name: "docusaurus-tailwindcss",
+        configurePostCss(postcssOptions) {
+          // Appends Tailwind CSS and AutoPrefixer.
+          postcssOptions.plugins.push(require('@tailwindcss/postcss'));
+          postcssOptions.plugins.push(require("autoprefixer"));
+          return postcssOptions;
+        },
+      };
+    },
+  ],
+
   presets: [
     [
       'classic',
@@ -90,6 +104,12 @@ const config: Config = {
           label: 'Tutorial',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          to: '/signin',
+          label: 'Sign In',
+          position: 'right',
+          className: 'navbar-signin-button',
+        },
       ],
     },
     footer: {
